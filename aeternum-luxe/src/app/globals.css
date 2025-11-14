@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+:root {
+  --color-midnight: #05010d;
+  --color-violet: #7b61ff;
+  --color-cyan: #6bffce;
+  --color-rose: #ff6b6b;
+  --color-snow: #f6f5ff;
+  --glow: 0 0 40px rgba(123, 97, 255, 0.35);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-cosmos: radial-gradient(circle at top, rgba(123, 97, 255, 0.15), rgba(5, 1, 13, 0.95) 60%),
+    linear-gradient(135deg, rgba(107, 255, 206, 0.07), rgba(255, 107, 107, 0.07));
+  --color-cosmic-foreground: var(--color-snow);
+  --font-heading: var(--font-cinzel);
+  --font-body: var(--font-cormorant);
+}
+
+body {
+  margin: 0;
+  background: var(--color-midnight);
+  color: var(--color-snow);
+  font-family: var(--font-body), serif;
+  overflow-x: hidden;
+}
+
+.bg-cosmos {
+  background: var(--color-cosmos);
+  position: relative;
+}
+
+.starfield::before,
+.starfield::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  opacity: 0.65;
+  animation: drift 120s linear infinite;
+  pointer-events: none;
+}
+
+.starfield::before {
+  background-image: radial-gradient(1px 1px at 20px 30px, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 90px 80px, rgba(255, 107, 107, 0.6), transparent),
+    radial-gradient(1px 1px at 130px 40px, rgba(123, 97, 255, 0.7), transparent);
+}
+
+.starfield::after {
+  background-image: radial-gradient(1px 1px at 50px 70px, rgba(107, 255, 206, 0.9), transparent),
+    radial-gradient(1px 1px at 170px 120px, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1px 1px at 200px 30px, rgba(123, 97, 255, 0.75), transparent);
+  mix-blend-mode: screen;
+  animation-direction: reverse;
+  animation-duration: 160s;
+}
+
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(-10%, -10%, 0) scale(1.1);
+  }
+}
+
+.glass-panel {
+  background: rgba(10, 3, 25, 0.58);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--glow);
+}
+
+.font-heading {
+  font-family: var(--font-heading), serif;
+  letter-spacing: 0.08em;
+}
+
+.font-body {
+  font-family: var(--font-body), serif;
+}
+
+.gradient-text {
+  background: linear-gradient(120deg, var(--color-violet), var(--color-cyan), var(--color-rose));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.65;
+}
+
+.orb.violet {
+  background: rgba(123, 97, 255, 0.75);
+}
+
+.orb.cyan {
+  background: rgba(107, 255, 206, 0.65);
+}
+
+.orb.rose {
+  background: rgba(255, 107, 107, 0.55);
+}
